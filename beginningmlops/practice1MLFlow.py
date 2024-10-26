@@ -99,9 +99,7 @@ def evaluate(sk_model,x_test,y_test):
     print(f"Auc Score: {auc_score:.3%}")
     print(f"Eval Accuracy: {eval_acc:.3%}")
     
-    # roc_plot=plot_roc_curve(sk_model,x_test,y_test,name='Scikit-learn ROC Curve')
     roc_plot = RocCurveDisplay.from_estimator(sk_model, x_test, y_test, name='Scikit-learn ROC Curve')
-    # roc_plot=RocCurveDisplay(sk_model,x_test,y_test,name='Scikit-learn ROC Curve')
     
     plt.savefig("sklearn_roc_plot.png")
     plt.show()
@@ -127,15 +125,12 @@ with mlflow.start_run():
     evaluate(sk_model,x_test,y_test)
 
     # Provide input example to infer model signature
-    # input_example = pd.DataFrame([x_train[0]], columns=df.drop("Class", axis=1).columns)
+
     input_example = x_train[0].reshape(1, -1) 
     mlflow.sklearn.log_model(sk_model, "log_reg_model", input_example=input_example)
-    
-    
-    # logger.info(f"Model run: {run.info.run_id}")
 
-    # mlflow.sklearn.log_model(sk_model,"log_reg_model")
 
+    
     logger.info(f"Model run: {mlflow.active_run().info.run_id}")
-    # logger.info("Model run: ",mlflow.active_run().info.run_uuid)
+
 mlflow.end_run()
