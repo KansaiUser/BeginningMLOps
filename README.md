@@ -30,7 +30,7 @@ and then from another terminal run
 
 ```Shell
 cd beginningmlops
-poetry run python practive1MLFlow.py
+poetry run python practice1MLFlow.py
 ```
 
 With that when you go to http://localhost:5000/ you will see the MLOps UI and can see the runs on the experiment `scikit_learn_experiment`
@@ -47,7 +47,7 @@ and then from another terminal run
 
 ```Shell
 cd servermlops
-poetry run python practive1MLFlow.py
+poetry run python practice1MLFlow.py
 ```
 
 Here to by going to http://localhost:5000/ you will see the MLOps UI and can see the runs on the experiment `scikit_learn_experiment`
