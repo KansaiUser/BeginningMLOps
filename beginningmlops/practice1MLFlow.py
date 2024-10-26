@@ -128,12 +128,13 @@ with mlflow.start_run():
 
     # Provide input example to infer model signature
     # input_example = pd.DataFrame([x_train[0]], columns=df.drop("Class", axis=1).columns)
-    # mlflow.sklearn.log_model(sk_model, "log_reg_model", input_example=input_example)
+    input_example = x_train[0].reshape(1, -1) 
+    mlflow.sklearn.log_model(sk_model, "log_reg_model", input_example=input_example)
     
     
     # logger.info(f"Model run: {run.info.run_id}")
 
-    mlflow.sklearn.log_model(sk_model,"log_reg_model")
+    # mlflow.sklearn.log_model(sk_model,"log_reg_model")
 
     logger.info(f"Model run: {mlflow.active_run().info.run_id}")
     # logger.info("Model run: ",mlflow.active_run().info.run_uuid)
